@@ -1,4 +1,4 @@
-![Android Messages](https://github.com/erwstout/android-messages/raw/master/assets/png/androidmessages_250x250.png "Android Messages")
+![Android Messages](https://raw.githubusercontent.com/erwstout/android-messages/master/assets/png/androidmessages_250x250.png "Android Messages")
 
 # Android Messages
 
