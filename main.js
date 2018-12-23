@@ -1,4 +1,5 @@
 const { app, BrowserWindow } = require("electron");
+const path = require("path");
 let mainWindow;
 
 function createWindow() {
@@ -6,7 +7,8 @@ function createWindow() {
     width: 800,
     height: 600,
     title: "Android Messages",
-    darkTheme: true
+    darkTheme: true,
+    icon: path.join(__dirname, "assets/icons/png/AndroidMessages.png")
   });
   mainWindow.loadURL("https://messages.android.com");
   mainWindow.setTitle("Android Messages");
