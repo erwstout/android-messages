@@ -1,6 +1,6 @@
-# Android Messages
+![Android Messages](https://github.com/erwstout/android-messages/raw/master/assets/png/androidmessages_250x250.png "Android Messages")
 
-<img src=https://github.com/erwstout/android-messages/raw/master/assets/png/androidmessages.png" alt="Android Messages" title="Android Messages" width="300">
+# Android Messages
 
 An electron wrapper for Android Messages for Web.
 
