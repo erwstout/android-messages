@@ -1,0 +1,16 @@
+{
+  "name": "android-messages",
+  "version": "0.0.1",
+  "description": "An electron app that wraps Android Messages For Web",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/erwstout/android-messages",
+  "author": "Eric Stout",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "electron": "^4.0.0"
+  }
+}
