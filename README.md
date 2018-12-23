@@ -2,8 +2,12 @@
 
 # Android Messages
 
-An electron wrapper for Android Messages for Web.
+An electron wrapper for Android Messages for Web. No more Chrome tabs for your messages!
 
-### Credits
+## Downloads
+
+[macOS](https://github.com/erwstout/android-messages/releases/download/v.0.0.1/AndroidMessages-darwin-x64.zip) | [Windows](https://github.com/erwstout/android-messages/releases/download/v.0.0.1/AndroidMessages-win32-x64.zip) (copy the directory to `Program Files` and launch `AndroidMessages.exe`)
+
+#### Credits
 
 Speech bubbles icon used in logo from [Icomoon](https://www.flaticon.com/authors/icomoon)
