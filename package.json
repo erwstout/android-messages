@@ -5,7 +5,10 @@
   "description": "An electron app that wraps Android Messages For Web",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "pack:osx": "electron-packager . AndroidMessages --out=dist/osx --platform=darwin --arch=x64 --icon=assets/mac/AndroidMessages.icns",
+    "pack:win64": "electron-packager . AndroidMessages --out=dist/win --platform=win32 --arch=x64 --icon=assets/win/AndroidMessages.ico",
+    "build": "yarn run pack:osx && yarn run pack:win64"
   },
   "repository": "https://github.com/erwstout/android-messages",
   "author": "Eric Stout",
