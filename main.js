@@ -117,6 +117,12 @@ function createWindow() {
   mainWindow.on("closed", function() {
     mainWindow = null;
   });
+
+  // open links in default OS browser
+  mainWindow.webContents.on("new-window", function(e, url) {
+    e.preventDefault();
+    require("electron").shell.openExternal(url);
+  });
 }
 app.on("ready", createWindow);
 
