@@ -1,7 +1,7 @@
 {
   "name": "android-messages",
   "productName": "Android Messages",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "An electron app that wraps Android Messages For Web",
   "main": "main.js",
   "scripts": {
