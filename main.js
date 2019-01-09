@@ -1,6 +1,106 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, Menu } = require("electron");
 const path = require("path");
 let mainWindow;
+
+const menuTemplate = [
+  {
+    label: "Edit",
+    submenu: [
+      { role: "undo" },
+      { role: "redo" },
+      { type: "separator" },
+      { role: "cut" },
+      { role: "copy" },
+      { role: "paste" },
+      { role: "delete" },
+      { role: "selectall" }
+    ]
+  },
+  {
+    label: "View",
+    submenu: [
+      { role: "reload" },
+      { role: "forcereload" },
+      { type: "separator" },
+      { role: "resetzoom" },
+      { role: "zoomin" },
+      { role: "zoomout" },
+      { type: "separator" },
+      { role: "togglefullscreen" }
+    ]
+  },
+  {
+    role: "window",
+    submenu: [{ role: "minimize" }, { role: "close" }]
+  },
+  {
+    role: "help",
+    submenu: [
+      {
+        label: "Report Issue",
+        click() {
+          require("electron").shell.openExternal(
+            "https://github.com/erwstout/android-messages/issues"
+          );
+        }
+      },
+      {
+        label: "View Releases",
+        click() {
+          require("electron").shell.openExternal(
+            "https://github.com/erwstout/android-messages/releases"
+          );
+        }
+      },
+      {
+        label: "View On GitHub",
+        click() {
+          require("electron").shell.openExternal(
+            "https://github.com/erwstout/android-messages"
+          );
+        }
+      }
+    ]
+  }
+];
+
+if (process.platform === "darwin") {
+  menuTemplate.unshift({
+    label: app.getName(),
+    submenu: [
+      { role: "about" },
+      { type: "separator" },
+      { role: "services" },
+      { type: "separator" },
+      { role: "hide" },
+      { role: "hideothers" },
+      { role: "unhide" },
+      { type: "separator" },
+      { role: "quit" }
+    ]
+  });
+
+  // Edit menu
+  menuTemplate[1].submenu.push(
+    { type: "separator" },
+    {
+      label: "Speech",
+      submenu: [{ role: "startspeaking" }, { role: "stopspeaking" }]
+    }
+  );
+
+  // Window menu
+  menuTemplate[3].submenu = [
+    { role: "close" },
+    { role: "minimize" },
+    { role: "zoom" },
+    { type: "separator" },
+    { role: "front" }
+  ];
+}
+
+const menu = Menu.buildFromTemplate(menuTemplate);
+Menu.setApplicationMenu(menu);
 
 function createWindow() {
   mainWindow = new BrowserWindow({
