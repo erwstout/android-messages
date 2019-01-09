@@ -1,5 +1,7 @@
-const { app, BrowserWindow, Menu } = require("electron");
+const { app, BrowserWindow, Menu, dialog } = require("electron");
 const path = require("path");
+const fetch = require("electron-fetch").default;
+
 let mainWindow;
 
 const menuTemplate = [
@@ -102,6 +104,37 @@ if (process.platform === "darwin") {
 const menu = Menu.buildFromTemplate(menuTemplate);
 Menu.setApplicationMenu(menu);
 
+const checkForUpdates = async () => {
+  const currentVersion = `v${app.getVersion()}`;
+  const latestVersion = await fetch(
+    "https://api.github.com/repos/erwstout/android-messages/releases/latest"
+  )
+    .then(res => res.json())
+    .then(release => release.tag_name)
+    .catch(err => console.error(err));
+
+  if (currentVersion !== latestVersion) {
+    console.log(
+      dialog.showMessageBox(
+        {
+          type: "none",
+          buttons: ["Cancel", "View Releases"],
+          title: "Update Available",
+          message: "There is an update available for Android Messages"
+        },
+        response => {
+          if (response === 0) {
+            return;
+          }
+          return require("electron").shell.openExternal(
+            "https://github.com/erwstout/android-messages/releases"
+          );
+        }
+      )
+    );
+  }
+};
+
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 800,
@@ -123,6 +156,10 @@ function createWindow() {
     e.preventDefault();
     require("electron").shell.openExternal(url);
   });
+
+  setTimeout(() => {
+    checkForUpdates();
+  }, 10000);
 }
 app.on("ready", createWindow);
 
