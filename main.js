@@ -1,6 +1,9 @@
 const { app, BrowserWindow, Menu, dialog } = require("electron");
 const path = require("path");
 const fetch = require("electron-fetch").default;
+const Analytics = require("electron-google-analytics").default;
+
+const analytics = new Analytics("UA-37217525-9");
 
 let mainWindow;
 
@@ -160,6 +163,15 @@ function createWindow() {
   setTimeout(() => {
     checkForUpdates();
   }, 10000);
+
+  analytics
+    .pageview("https://ericwstout.com", "/android-messages", "Android Messages")
+    .then(response => {
+      return response;
+    })
+    .catch(err => {
+      return err;
+    });
 }
 app.on("ready", createWindow);
 
