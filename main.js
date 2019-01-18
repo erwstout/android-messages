@@ -64,6 +64,14 @@ const menuTemplate = [
             "https://github.com/erwstout/android-messages"
           );
         }
+      },
+      {
+        label: "View Changelog",
+        click() {
+          require("electron").shell.openExternal(
+            "https://github.com/erwstout/android-messages/blob/master/CHANGELOG.md"
+          );
+        }
       }
     ]
   }
