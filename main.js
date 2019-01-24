@@ -3,7 +3,7 @@ const path = require("path");
 const fetch = require("electron-fetch").default;
 const Analytics = require("electron-google-analytics").default;
 
-const analytics = new Analytics("UA-37217525-9");
+const analytics = new Analytics("UA-37217525-11");
 
 let mainWindow;
 
@@ -173,8 +173,9 @@ function createWindow() {
   }, 10000);
 
   analytics
-    .pageview("https://ericwstout.com", "/android-messages", "Android Messages")
+    .event("Application", "launched", { evLabel: "Launched", evValue: 1 })
     .then(response => {
+      console.log(response);
       return response;
     })
     .catch(err => {
